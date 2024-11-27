@@ -224,20 +224,20 @@ export default function Landing() {
     <div className="bg-gradient-to-b from-gray-50 to-white">
       {/* Header */}
       <header className="absolute top-0 left-0 right-0 z-50">
-        <nav className="mx-auto max-w-7xl px-6 lg:px-8" aria-label="Top">
-          <div className="flex w-full items-center justify-between py-6">
+        <nav className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8" aria-label="Top">
+          <div className="flex w-full items-center justify-between py-4 sm:py-6">
             {/* Logo */}
             <div className="flex items-center">
               <Link
                 to="/"
-                className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary-600 to-secondary-600 hover:opacity-90 transition-opacity"
+                className="text-xl sm:text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary-600 to-secondary-600 hover:opacity-90 transition-opacity"
               >
                 Quitter
               </Link>
             </div>
             
             {/* Auth Buttons */}
-            <div className="flex items-center space-x-4">
+            <div className="flex items-center space-x-2 sm:space-x-4">
               <Link
                 to="/login"
                 className="text-sm font-semibold text-gray-900 hover:text-primary-600 transition-colors"
@@ -246,7 +246,7 @@ export default function Landing() {
               </Link>
               <Link
                 to="/signup"
-                className="rounded-full bg-gradient-to-r from-primary-600 to-secondary-600 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:shadow-xl transition-all"
+                className="rounded-full bg-gradient-to-r from-primary-600 to-secondary-600 px-3 py-1.5 sm:px-4 sm:py-2 text-sm font-semibold text-white shadow-sm hover:shadow-xl transition-all"
               >
                 Sign up
               </Link>
@@ -257,37 +257,42 @@ export default function Landing() {
 
       {/* Hero Section */}
       <motion.div
-        className="relative isolate px-6 lg:px-8"
+        className="relative isolate px-4 sm:px-6 lg:px-8"
         variants={containerVariants}
         initial="hidden"
         animate="visible"
       >
-        <div className="mx-auto max-w-3xl py-32 sm:py-40">
-          <motion.div className="text-center space-y-8" variants={containerVariants}>
-            <motion.div variants={titleVariants} className="space-y-8">
-              <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">
-                <span className="block mb-4">Sometimes,</span>
-                <TypeAnimation
-                  sequence={[
-                    'being a quitter...',
-                    1500,
-                    'takes courage.',
-                    2000,
-                    'shows strength.',
-                    2000,
-                    'changes lives.',
-                    2000,
-                    'makes you a winner.',
-                    3000,
-                  ]}
-                  wrapper="span"
-                  speed={50}
-                  className="bg-clip-text text-transparent bg-gradient-to-r from-primary-600 to-secondary-600"
-                  repeat={Infinity}
-                />
+        <div className="mx-auto max-w-3xl py-24 sm:py-32 lg:py-40">
+          <motion.div className="text-center space-y-6 sm:space-y-8" variants={containerVariants}>
+            <motion.div variants={titleVariants} className="space-y-4 sm:space-y-8">
+              <h1 className="text-3xl sm:text-4xl lg:text-6xl font-bold tracking-tight text-gray-900">
+                <span className="block mb-2 sm:mb-4">Sometimes,</span>
+                <span className="hidden sm:block">
+                  <TypeAnimation
+                    sequence={[
+                      'being a quitter...',
+                      1500,
+                      'takes courage.',
+                      2000,
+                      'shows strength.',
+                      2000,
+                      'changes lives.',
+                      2000,
+                      'makes you a winner.',
+                      3000,
+                    ]}
+                    wrapper="span"
+                    speed={50}
+                    className="bg-clip-text text-transparent bg-gradient-to-r from-primary-600 to-secondary-600"
+                    repeat={Infinity}
+                  />
+                </span>
+                <span className="sm:hidden bg-clip-text text-transparent bg-gradient-to-r from-primary-600 to-secondary-600">
+                  being a quitter makes you a winner.
+                </span>
               </h1>
               
-              <div className="space-y-4 text-lg sm:text-xl text-gray-600 leading-relaxed">
+              <div className="hidden sm:block space-y-4 text-lg sm:text-xl text-gray-600 leading-relaxed">
                 <TypeAnimation
                   sequence={[
                     1000,
@@ -306,30 +311,33 @@ export default function Landing() {
                   repeat={0}
                 />
               </div>
+              <div className="sm:hidden text-base text-gray-600 leading-relaxed">
+                <p className="font-medium">Take the first step towards a healthier, smoke-free life today.</p>
+              </div>
             </motion.div>
 
             <motion.div 
-              className="mt-10 flex items-center justify-center gap-x-6"
+              className="mt-6 sm:mt-10 flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-x-6"
               variants={containerVariants}
             >
-              <motion.div variants={buttonVariants} whileHover="hover" whileTap="tap">
+              <motion.div variants={buttonVariants} whileHover="hover" whileTap="tap" className="w-full sm:w-auto">
                 <Link
                   to="/signup"
-                  className="rounded-full bg-gradient-to-r from-primary-600 to-secondary-600 px-8 py-3 text-base font-semibold text-white shadow-lg hover:shadow-xl transition-all duration-200"
+                  className="w-full sm:w-auto inline-block text-center rounded-full bg-gradient-to-r from-primary-600 to-secondary-600 px-6 sm:px-8 py-2.5 sm:py-3 text-base font-semibold text-white shadow-lg hover:shadow-xl transition-all duration-200"
                 >
-                  Start Your Journey Today
+                  Start Your Journey
                 </Link>
               </motion.div>
               <Link
                 to="/login"
                 className="text-base font-semibold leading-6 text-gray-900 hover:text-primary-600 transition-colors"
               >
-                Already on the journey? Sign in <span aria-hidden="true">→</span>
+                Sign in <span aria-hidden="true">→</span>
               </Link>
             </motion.div>
 
             <motion.div 
-              className="mt-16 grid grid-cols-2 gap-8 md:grid-cols-4"
+              className="mt-12 sm:mt-16 grid grid-cols-2 gap-4 sm:gap-8 md:grid-cols-4"
               variants={fadeInUpVariants}
             >
               <FlipStat stat={stats[0]} />
@@ -341,15 +349,15 @@ export default function Landing() {
         </div>
       </motion.div>
 
-      {/* Stats Section */}
+      {/* Stats Section - Hidden on mobile */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.5 }}
-        className="bg-gradient-to-r from-primary-600 to-secondary-600 py-16"
+        className="hidden sm:block bg-gradient-to-r from-primary-600 to-secondary-600 py-16"
       >
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <dl className="grid grid-cols-1 gap-x-8 gap-y-16 text-center lg:grid-cols-4">
+          <dl className="grid grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-16 text-center">
             {stats.map((stat) => (
               <div key={stat.label} className="mx-auto flex max-w-xs flex-col gap-y-4">
                 <dt className="text-base leading-7 text-white">{stat.label}</dt>
@@ -367,36 +375,35 @@ export default function Landing() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.8 }}
-        className="py-24 sm:py-32"
+        className="py-16 sm:py-24"
       >
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="mx-auto max-w-2xl lg:text-center">
             <h2 className="text-base font-semibold leading-7 text-primary-600">
               Everything You Need
             </h2>
-            <p className="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+            <p className="mt-2 text-2xl sm:text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
               Your Complete Quit-Smoking Companion
             </p>
-            <p className="mt-6 text-lg leading-8 text-gray-600">
-              Our comprehensive toolkit helps you stay on track with your quit smoking goals,
-              providing support every step of the way.
+            <p className="mt-4 sm:mt-6 text-base sm:text-lg leading-8 text-gray-600">
+              Our comprehensive toolkit helps you stay on track with your quit smoking goals.
             </p>
           </div>
-          <div className="mx-auto mt-16 max-w-2xl sm:mt-20 lg:mt-24 lg:max-w-none">
-            <dl className="grid max-w-xl grid-cols-1 gap-x-8 gap-y-16 lg:max-w-none lg:grid-cols-3">
+          <div className="mx-auto mt-12 sm:mt-16 max-w-2xl lg:max-w-none">
+            <dl className="grid max-w-xl grid-cols-1 gap-y-8 sm:gap-x-8 sm:gap-y-16 lg:grid-cols-3">
               {features.map((feature) => (
                 <motion.div
                   key={feature.title}
-                  whileHover={{ scale: 1.05 }}
-                  className="flex flex-col bg-white rounded-2xl shadow-lg p-6 hover:shadow-xl transition-shadow duration-300"
+                  whileHover={{ scale: 1.02 }}
+                  className="flex flex-col bg-white rounded-2xl shadow-lg p-4 sm:p-6 hover:shadow-xl transition-shadow duration-300"
                 >
                   <dt className="flex items-center gap-x-3 text-base font-semibold leading-7 text-gray-900">
-                    <div className="h-10 w-10 flex items-center justify-center rounded-lg bg-primary-600 text-white">
+                    <div className="h-8 w-8 sm:h-10 sm:w-10 flex items-center justify-center rounded-lg bg-primary-600 text-white">
                       {feature.icon}
                     </div>
                     {feature.title}
                   </dt>
-                  <dd className="mt-4 flex flex-auto flex-col text-base leading-7 text-gray-600">
+                  <dd className="mt-3 sm:mt-4 flex flex-auto flex-col text-sm sm:text-base leading-7 text-gray-600">
                     <p className="flex-auto">{feature.description}</p>
                   </dd>
                 </motion.div>
@@ -413,7 +420,7 @@ export default function Landing() {
         transition={{ delay: 1 }}
         className="bg-gradient-to-r from-primary-600 to-secondary-600 py-16 sm:py-24"
       >
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="mx-auto max-w-2xl text-center">
             <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
               Ready to Change Your Life?
