@@ -375,21 +375,25 @@ export default function Dashboard() {
 
       {/* Share Modal */}
       {showShareCard && (
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center p-4 z-50"
-          onClick={(e) => {
-            if (e.target === e.currentTarget) setShowShareCard(false);
-          }}
-        >
-          <ShareProgressCard
-            daysSmokeFree={totalDays}
-            cigarettesAvoided={stats.cigarettesAvoided}
-            moneySaved={stats.moneySaved}
-            shareUrl={shareUrl}
-          />
-        </motion.div>
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
+          <div className="relative">
+            <button
+              onClick={() => setShowShareCard(false)}
+              className="absolute -top-4 -right-4 bg-white rounded-full p-2 shadow-lg hover:bg-gray-100"
+            >
+              <svg className="w-6 h-6 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+            <ShareProgressCard
+              timeSinceQuit={timeSinceQuit}
+              cigarettesAvoided={stats.cigarettesAvoided}
+              moneySaved={stats.moneySaved}
+              shareUrl={shareUrl}
+              currencySymbol={currencySymbol}
+            />
+          </div>
+        </div>
       )}
     </motion.div>
   );
