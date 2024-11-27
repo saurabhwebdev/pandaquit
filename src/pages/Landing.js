@@ -285,20 +285,21 @@ export default function Landing() {
         <div className="mx-auto max-w-7xl py-24 sm:py-32 lg:py-40">
           <motion.div className="text-center lg:text-left lg:grid lg:grid-cols-12 lg:gap-8" variants={containerVariants}>
             <motion.div variants={titleVariants} className="lg:col-span-7 space-y-4 sm:space-y-8">
+              <span className="inline-flex items-center rounded-full px-4 py-1 text-sm font-medium bg-primary-50 text-primary-700 ring-1 ring-inset ring-primary-600/20">
+                Your Journey to Freedom
+              </span>
               <h1 className="text-3xl sm:text-4xl lg:text-6xl font-bold tracking-tight text-gray-900">
-                <span className="block mb-2 sm:mb-4">Sometimes,</span>
+                <span className="block mb-2 sm:mb-4">Every Quit</span>
                 <span className="hidden sm:block">
                   <TypeAnimation
                     sequence={[
-                      'being a quitter...',
-                      1500,
-                      'takes courage.',
+                      'starts with courage.',
                       2000,
-                      'shows strength.',
+                      'leads to freedom.',
                       2000,
-                      'changes lives.',
+                      'changes your life.',
                       2000,
-                      'makes you a winner.',
+                      'is worth celebrating.',
                       3000,
                     ]}
                     wrapper="span"
@@ -308,7 +309,7 @@ export default function Landing() {
                   />
                 </span>
                 <span className="sm:hidden bg-clip-text text-transparent bg-gradient-to-r from-primary-600 to-secondary-600">
-                  being a quitter makes you a winner.
+                  is your victory.
                 </span>
               </h1>
               
@@ -316,13 +317,11 @@ export default function Landing() {
                 <TypeAnimation
                   sequence={[
                     1000,
-                    'Every journey begins with a decision.',
+                    'Your journey to freedom begins today.',
                     1500,
-                    'Your decision to quit smoking is not a sign of weakness.',
+                    'Every breath without smoke is a victory.',
                     1500,
-                    "It's a bold step towards a healthier, better you.",
-                    1500,
-                    'Join thousands who chose to be proud quitters.',
+                    'Join thousands who chose a healthier future.',
                     1500,
                   ]}
                   wrapper="p"
@@ -383,84 +382,241 @@ export default function Landing() {
         </div>
       </motion.div>
 
-      {/* Features Section */}
+      {/* Journey Section */}
       <motion.div
         initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.8 }}
-        className="py-16 sm:py-24 lg:py-32 relative overflow-hidden"
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8 }}
+        className="relative py-16 sm:py-24 lg:py-32 bg-gradient-to-b from-white to-gray-50"
       >
-        <div className="absolute inset-0 bg-gradient-to-b from-gray-50/50 to-white/95 backdrop-blur-sm"></div>
-        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="mx-auto max-w-3xl text-center">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="mx-auto max-w-3xl text-center mb-16">
+            <span className="inline-flex items-center rounded-full px-4 py-1 text-sm font-medium bg-primary-50 text-primary-700 ring-1 ring-inset ring-primary-600/20">
+              Your Path to Freedom
+            </span>
+            <h2 className="mt-4 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+              A Journey of <span className="bg-clip-text text-transparent bg-gradient-to-r from-primary-600 to-secondary-600">Transformation</span>
+            </h2>
+            <p className="mt-6 text-lg text-gray-600">
+              Every journey begins with a single step. Here's how we help you transform your life, one smoke-free day at a time.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5 }}
+              className="relative bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg p-6 lg:p-8"
             >
-              <span className="inline-flex items-center rounded-full px-4 py-1 text-sm font-medium bg-primary-50 text-primary-700 ring-1 ring-inset ring-primary-600/20 mb-6">
-                Everything You Need
-              </span>
-              <h2 className="mt-4 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl lg:text-5xl bg-clip-text text-transparent bg-gradient-to-r from-primary-600 to-secondary-600">
-                Your Complete Quit-Smoking Companion
-              </h2>
-              <p className="mt-6 text-lg sm:text-xl leading-8 text-gray-600 max-w-2xl mx-auto">
-                We've crafted a powerful suite of tools and features designed to support every step of your journey towards a smoke-free life.
+              <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-gradient-to-r from-primary-600 to-secondary-600 rounded-full p-3 text-white">
+                <span className="text-xl font-bold">1</span>
+              </div>
+              <h3 className="mt-4 text-xl font-semibold text-gray-900 text-center">The Decision</h3>
+              <p className="mt-4 text-gray-600 text-center">
+                It starts with your commitment to change. We're here to support your brave decision with tools and community backing.
               </p>
             </motion.div>
 
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.2 }}
-              className="mt-16 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3"
+              className="relative bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg p-6 lg:p-8"
             >
-              {features.map((feature, index) => (
-                <motion.div
-                  key={feature.title}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                  whileHover={{ 
-                    scale: 1.02,
-                    boxShadow: "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)"
-                  }}
-                  className="relative flex flex-col bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 group overflow-hidden"
-                >
-                  <div className="absolute inset-0 bg-gradient-to-br from-primary-600/5 to-secondary-600/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                  
-                  <div className="p-6 sm:p-8 relative z-10">
-                    <div className="flex items-center gap-x-4">
-                      <div className="h-12 w-12 flex items-center justify-center rounded-xl bg-gradient-to-r from-primary-600 to-secondary-600 text-white shadow-md group-hover:shadow-lg transition-all duration-300">
-                        {feature.icon}
-                      </div>
-                      <h3 className="text-xl font-semibold leading-7 text-gray-900 group-hover:text-primary-600 transition-colors duration-300">
-                        {feature.title}
-                      </h3>
-                    </div>
-                    <div className="mt-6 flex flex-col gap-4">
-                      <p className="text-base leading-7 text-gray-600">
-                        {feature.description}
-                      </p>
-                      <div className="h-px w-full bg-gradient-to-r from-primary-600/10 to-secondary-600/10"></div>
-                      <ul className="space-y-3 text-sm text-gray-600">
-                        {feature.benefits.map((benefit, i) => (
-                          <li key={i} className="flex items-center gap-2">
-                            <svg className="h-4 w-4 text-primary-600 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                            </svg>
-                            {benefit}
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  </div>
-                </motion.div>
-              ))}
+              <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-gradient-to-r from-primary-600 to-secondary-600 rounded-full p-3 text-white">
+                <span className="text-xl font-bold">2</span>
+              </div>
+              <h3 className="mt-4 text-xl font-semibold text-gray-900 text-center">The Journey</h3>
+              <p className="mt-4 text-gray-600 text-center">
+                Track your progress, celebrate milestones, and watch as your health and savings grow day by day.
+              </p>
             </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.4 }}
+              className="relative bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg p-6 lg:p-8"
+            >
+              <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-gradient-to-r from-primary-600 to-secondary-600 rounded-full p-3 text-white">
+                <span className="text-xl font-bold">3</span>
+              </div>
+              <h3 className="mt-4 text-xl font-semibold text-gray-900 text-center">The Victory</h3>
+              <p className="mt-4 text-gray-600 text-center">
+                Experience the freedom of a smoke-free life. Feel healthier, prouder, and more in control every single day.
+              </p>
+            </motion.div>
+          </div>
+        </div>
+      </motion.div>
+
+      {/* Success Stories Section */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8 }}
+        className="relative py-16 sm:py-24 lg:py-32 overflow-hidden"
+      >
+        <div className="absolute inset-0 bg-gradient-to-b from-gray-50/50 to-white/95 backdrop-blur-sm"></div>
+        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="mx-auto max-w-3xl text-center mb-16">
+            <span className="inline-flex items-center rounded-full px-4 py-1 text-sm font-medium bg-primary-50 text-primary-700 ring-1 ring-inset ring-primary-600/20">
+              Real Stories, Real Success
+            </span>
+            <h2 className="mt-4 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+              Join Our Community of <span className="bg-clip-text text-transparent bg-gradient-to-r from-primary-600 to-secondary-600">Successful Quitters</span>
+            </h2>
+            <p className="mt-6 text-lg text-gray-600">
+              Thousands have already taken control of their lives. Here's what they've achieved:
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
+            {stats.map((stat, index) => (
+              <motion.div
+                key={stat.id}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                className="bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg p-6 text-center"
+              >
+                <FlipStat stat={stat} />
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </motion.div>
+
+      {/* Features Section */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.8 }}
+        className="relative py-16 sm:py-24 lg:py-32 bg-gradient-to-b from-white to-gray-50"
+      >
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="mx-auto max-w-3xl text-center">
+            <span className="inline-flex items-center rounded-full px-4 py-1 text-sm font-medium bg-primary-50 text-primary-700 ring-1 ring-inset ring-primary-600/20 mb-6">
+              Everything You Need
+            </span>
+            <h2 className="mt-4 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl lg:text-5xl bg-clip-text text-transparent bg-gradient-to-r from-primary-600 to-secondary-600">
+              Your Complete Quit-Smoking Companion
+            </h2>
+            <p className="mt-6 text-lg sm:text-xl leading-8 text-gray-600 max-w-2xl mx-auto">
+              We've crafted a powerful suite of tools and features designed to support every step of your journey towards a smoke-free life.
+            </p>
+          </div>
+
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            className="mt-16 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3"
+          >
+            {features.map((feature, index) => (
+              <motion.div
+                key={feature.title}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                whileHover={{ 
+                  scale: 1.02,
+                  boxShadow: "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)"
+                }}
+                className="relative flex flex-col bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 group overflow-hidden"
+              >
+                <div className="absolute inset-0 bg-gradient-to-br from-primary-600/5 to-secondary-600/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                
+                <div className="p-6 sm:p-8 relative z-10">
+                  <div className="flex items-center gap-x-4">
+                    <div className="h-12 w-12 flex items-center justify-center rounded-xl bg-gradient-to-r from-primary-600 to-secondary-600 text-white shadow-md group-hover:shadow-lg transition-all duration-300">
+                      {feature.icon}
+                    </div>
+                    <h3 className="text-xl font-semibold leading-7 text-gray-900 group-hover:text-primary-600 transition-colors duration-300">
+                      {feature.title}
+                    </h3>
+                  </div>
+                  <div className="mt-6 flex flex-col gap-4">
+                    <p className="text-base leading-7 text-gray-600">
+                      {feature.description}
+                    </p>
+                    <div className="h-px w-full bg-gradient-to-r from-primary-600/10 to-secondary-600/10"></div>
+                    <ul className="space-y-3 text-sm text-gray-600">
+                      {feature.benefits.map((benefit, i) => (
+                        <li key={i} className="flex items-center gap-2">
+                          <svg className="h-4 w-4 text-primary-600 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                          </svg>
+                          {benefit}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
+      </motion.div>
+
+      {/* Health Benefits Section */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8 }}
+        className="relative py-16 sm:py-24 lg:py-32 bg-gradient-to-b from-white to-gray-50"
+      >
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="mx-auto max-w-3xl text-center mb-16">
+            <span className="inline-flex items-center rounded-full px-4 py-1 text-sm font-medium bg-primary-50 text-primary-700 ring-1 ring-inset ring-primary-600/20">
+              Your Health Journey
+            </span>
+            <h2 className="mt-4 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+              Watch Your Body <span className="bg-clip-text text-transparent bg-gradient-to-r from-primary-600 to-secondary-600">Transform</span>
+            </h2>
+            <p className="mt-6 text-lg text-gray-600">
+              Experience remarkable health improvements from the moment you quit:
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {[
+              { time: '20 minutes', description: 'Your heart rate and blood pressure drop.' },
+              { time: '12 hours', description: 'The carbon monoxide level in your blood decreases.' },
+              { time: '24 hours', description: 'Your risk of heart attack begins to decrease.' },
+              { time: '48 hours', description: 'Your nerve endings start to regrow.' },
+              { time: '72 hours', description: 'Your breathing becomes easier.' },
+              { time: '1 week', description: 'Your circulation improves.' },
+            ].map((milestone, index) => (
+              <motion.div
+                key={milestone.time}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                className="bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg p-6 hover:shadow-xl transition-shadow duration-300"
+              >
+                <div className="flex items-center gap-4 mb-4">
+                  <div className="h-12 w-12 flex-shrink-0 flex items-center justify-center rounded-xl bg-gradient-to-r from-primary-600 to-secondary-600 text-white">
+                    <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                  </div>
+                  <h3 className="text-lg font-semibold text-gray-900">{milestone.time}</h3>
+                </div>
+                <p className="text-gray-600">{milestone.description}</p>
+              </motion.div>
+            ))}
           </div>
         </div>
       </motion.div>
