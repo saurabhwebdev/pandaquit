@@ -129,6 +129,11 @@ const features = [
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
       </svg>
     ),
+    benefits: [
+      "Get personalized insights into your progress",
+      "Set and achieve milestones with our customizable goals system",
+      "Stay motivated with our community of supportive quitters",
+    ],
   },
   {
     title: "Breathing Exercises",
@@ -138,6 +143,11 @@ const features = [
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
       </svg>
     ),
+    benefits: [
+      "Reduce stress and anxiety with our guided breathing exercises",
+      "Improve your mood and overall well-being",
+      "Stay focused and motivated with our customizable exercise plans",
+    ],
   },
   {
     title: "Community Support",
@@ -147,6 +157,11 @@ const features = [
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
       </svg>
     ),
+    benefits: [
+      "Connect with others who understand your journey",
+      "Share your experiences and tips with the community",
+      "Get support and motivation from our community of quitters",
+    ],
   },
 ];
 
@@ -262,9 +277,14 @@ export default function Landing() {
         initial="hidden"
         animate="visible"
       >
-        <div className="mx-auto max-w-3xl py-24 sm:py-32 lg:py-40">
-          <motion.div className="text-center space-y-6 sm:space-y-8" variants={containerVariants}>
-            <motion.div variants={titleVariants} className="space-y-4 sm:space-y-8">
+        {/* Background Elements */}
+        <div className="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80" aria-hidden="true">
+          <div className="relative left-[calc(50%-11rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-primary-600 to-secondary-600 opacity-20 sm:left-[calc(50%-30rem)] sm:w-[72.1875rem]" style={{ clipPath: 'polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)' }} />
+        </div>
+
+        <div className="mx-auto max-w-7xl py-24 sm:py-32 lg:py-40">
+          <motion.div className="text-center lg:text-left lg:grid lg:grid-cols-12 lg:gap-8" variants={containerVariants}>
+            <motion.div variants={titleVariants} className="lg:col-span-7 space-y-4 sm:space-y-8">
               <h1 className="text-3xl sm:text-4xl lg:text-6xl font-bold tracking-tight text-gray-900">
                 <span className="block mb-2 sm:mb-4">Sometimes,</span>
                 <span className="hidden sm:block">
@@ -314,59 +334,52 @@ export default function Landing() {
               <div className="sm:hidden text-base text-gray-600 leading-relaxed">
                 <p className="font-medium">Take the first step towards a healthier, smoke-free life today.</p>
               </div>
-            </motion.div>
 
-            <motion.div 
-              className="mt-6 sm:mt-10 flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-x-6"
-              variants={containerVariants}
-            >
-              <motion.div variants={buttonVariants} whileHover="hover" whileTap="tap" className="w-full sm:w-auto">
+              <motion.div 
+                className="mt-6 sm:mt-10 flex flex-col sm:flex-row items-center gap-4 sm:gap-x-6"
+                variants={containerVariants}
+              >
+                <motion.div variants={buttonVariants} whileHover="hover" whileTap="tap" className="w-full sm:w-auto">
+                  <Link
+                    to="/signup"
+                    className="w-full sm:w-auto inline-block text-center rounded-full bg-gradient-to-r from-primary-600 to-secondary-600 px-6 sm:px-8 py-2.5 sm:py-3 text-base font-semibold text-white shadow-lg hover:shadow-xl transition-all duration-200"
+                  >
+                    Start Your Journey
+                  </Link>
+                </motion.div>
                 <Link
-                  to="/signup"
-                  className="w-full sm:w-auto inline-block text-center rounded-full bg-gradient-to-r from-primary-600 to-secondary-600 px-6 sm:px-8 py-2.5 sm:py-3 text-base font-semibold text-white shadow-lg hover:shadow-xl transition-all duration-200"
+                  to="/login"
+                  className="text-base font-semibold leading-6 text-gray-900 hover:text-primary-600 transition-colors"
                 >
-                  Start Your Journey
+                  Sign in <span aria-hidden="true">→</span>
                 </Link>
               </motion.div>
-              <Link
-                to="/login"
-                className="text-base font-semibold leading-6 text-gray-900 hover:text-primary-600 transition-colors"
-              >
-                Sign in <span aria-hidden="true">→</span>
-              </Link>
             </motion.div>
 
             <motion.div 
-              className="mt-12 sm:mt-16 grid grid-cols-2 gap-4 sm:gap-8 md:grid-cols-4"
+              className="mt-12 lg:mt-0 lg:col-span-5 bg-white/50 backdrop-blur-lg rounded-2xl p-6 lg:p-8 shadow-xl"
               variants={fadeInUpVariants}
             >
-              <FlipStat stat={stats[0]} />
-              <AnimatedMoneyStat />
-              <FlipStat stat={stats[2]} />
-              <FlipStat stat={stats[3]} />
+              <div className="grid grid-cols-2 gap-6 lg:gap-8">
+                <div className="col-span-2">
+                  <h3 className="text-lg font-semibold text-gray-900 mb-4">Real-Time Impact</h3>
+                </div>
+                <div className="space-y-6">
+                  <FlipStat stat={stats[0]} />
+                  <FlipStat stat={stats[2]} />
+                </div>
+                <div className="space-y-6">
+                  <AnimatedMoneyStat />
+                  <FlipStat stat={stats[3]} />
+                </div>
+              </div>
             </motion.div>
           </motion.div>
         </div>
-      </motion.div>
 
-      {/* Stats Section - Hidden on mobile */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.5 }}
-        className="hidden sm:block bg-gradient-to-r from-primary-600 to-secondary-600 py-16"
-      >
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <dl className="grid grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-16 text-center">
-            {stats.map((stat) => (
-              <div key={stat.label} className="mx-auto flex max-w-xs flex-col gap-y-4">
-                <dt className="text-base leading-7 text-white">{stat.label}</dt>
-                <dd className="order-first text-3xl font-semibold tracking-tight text-white sm:text-5xl">
-                  {stat.prefix}{stat.number}{stat.suffix}
-                </dd>
-              </div>
-            ))}
-          </dl>
+        {/* Background Elements */}
+        <div className="absolute inset-x-0 top-[calc(100%-13rem)] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[calc(100%-30rem)]" aria-hidden="true">
+          <div className="relative left-[calc(50%+3rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 bg-gradient-to-tr from-primary-600 to-secondary-600 opacity-20 sm:left-[calc(50%+36rem)] sm:w-[72.1875rem]" style={{ clipPath: 'polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)' }} />
         </div>
       </motion.div>
 
@@ -375,40 +388,79 @@ export default function Landing() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.8 }}
-        className="py-16 sm:py-24"
+        className="py-16 sm:py-24 lg:py-32 relative overflow-hidden"
       >
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="mx-auto max-w-2xl lg:text-center">
-            <h2 className="text-base font-semibold leading-7 text-primary-600">
-              Everything You Need
-            </h2>
-            <p className="mt-2 text-2xl sm:text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-              Your Complete Quit-Smoking Companion
-            </p>
-            <p className="mt-4 sm:mt-6 text-base sm:text-lg leading-8 text-gray-600">
-              Our comprehensive toolkit helps you stay on track with your quit smoking goals.
-            </p>
-          </div>
-          <div className="mx-auto mt-12 sm:mt-16 max-w-2xl lg:max-w-none">
-            <dl className="grid max-w-xl grid-cols-1 gap-y-8 sm:gap-x-8 sm:gap-y-16 lg:grid-cols-3">
-              {features.map((feature) => (
+        <div className="absolute inset-0 bg-gradient-to-b from-gray-50/50 to-white/95 backdrop-blur-sm"></div>
+        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="mx-auto max-w-3xl text-center">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+            >
+              <span className="inline-flex items-center rounded-full px-4 py-1 text-sm font-medium bg-primary-50 text-primary-700 ring-1 ring-inset ring-primary-600/20 mb-6">
+                Everything You Need
+              </span>
+              <h2 className="mt-4 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl lg:text-5xl bg-clip-text text-transparent bg-gradient-to-r from-primary-600 to-secondary-600">
+                Your Complete Quit-Smoking Companion
+              </h2>
+              <p className="mt-6 text-lg sm:text-xl leading-8 text-gray-600 max-w-2xl mx-auto">
+                We've crafted a powerful suite of tools and features designed to support every step of your journey towards a smoke-free life.
+              </p>
+            </motion.div>
+
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              className="mt-16 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3"
+            >
+              {features.map((feature, index) => (
                 <motion.div
                   key={feature.title}
-                  whileHover={{ scale: 1.02 }}
-                  className="flex flex-col bg-white rounded-2xl shadow-lg p-4 sm:p-6 hover:shadow-xl transition-shadow duration-300"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  whileHover={{ 
+                    scale: 1.02,
+                    boxShadow: "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)"
+                  }}
+                  className="relative flex flex-col bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 group overflow-hidden"
                 >
-                  <dt className="flex items-center gap-x-3 text-base font-semibold leading-7 text-gray-900">
-                    <div className="h-8 w-8 sm:h-10 sm:w-10 flex items-center justify-center rounded-lg bg-primary-600 text-white">
-                      {feature.icon}
+                  <div className="absolute inset-0 bg-gradient-to-br from-primary-600/5 to-secondary-600/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  
+                  <div className="p-6 sm:p-8 relative z-10">
+                    <div className="flex items-center gap-x-4">
+                      <div className="h-12 w-12 flex items-center justify-center rounded-xl bg-gradient-to-r from-primary-600 to-secondary-600 text-white shadow-md group-hover:shadow-lg transition-all duration-300">
+                        {feature.icon}
+                      </div>
+                      <h3 className="text-xl font-semibold leading-7 text-gray-900 group-hover:text-primary-600 transition-colors duration-300">
+                        {feature.title}
+                      </h3>
                     </div>
-                    {feature.title}
-                  </dt>
-                  <dd className="mt-3 sm:mt-4 flex flex-auto flex-col text-sm sm:text-base leading-7 text-gray-600">
-                    <p className="flex-auto">{feature.description}</p>
-                  </dd>
+                    <div className="mt-6 flex flex-col gap-4">
+                      <p className="text-base leading-7 text-gray-600">
+                        {feature.description}
+                      </p>
+                      <div className="h-px w-full bg-gradient-to-r from-primary-600/10 to-secondary-600/10"></div>
+                      <ul className="space-y-3 text-sm text-gray-600">
+                        {feature.benefits.map((benefit, i) => (
+                          <li key={i} className="flex items-center gap-2">
+                            <svg className="h-4 w-4 text-primary-600 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                            </svg>
+                            {benefit}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  </div>
                 </motion.div>
               ))}
-            </dl>
+            </motion.div>
           </div>
         </div>
       </motion.div>
@@ -418,30 +470,33 @@ export default function Landing() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1 }}
-        className="bg-gradient-to-r from-primary-600 to-secondary-600 py-16 sm:py-24"
+        className="relative isolate"
       >
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="mx-auto max-w-2xl text-center">
-            <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
-              Ready to Change Your Life?
-            </h2>
-            <p className="mx-auto mt-6 max-w-xl text-lg leading-8 text-gray-100">
-              Join our community of successful quitters and take the first step towards a healthier,
-              smoke-free life today.
-            </p>
-            <div className="mt-10 flex items-center justify-center gap-x-6">
-              <Link
-                to="/signup"
-                className="rounded-full bg-white px-8 py-3 text-sm font-semibold text-primary-600 shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200"
-              >
-                Get Started Now
-              </Link>
-              <Link
-                to="/login"
-                className="text-sm font-semibold leading-6 text-white hover:text-gray-100 transition-colors"
-              >
-                Sign in <span aria-hidden="true">→</span>
-              </Link>
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16 sm:py-24 lg:py-32">
+          <div className="relative overflow-hidden rounded-3xl bg-gradient-to-r from-primary-600 to-secondary-600 px-6 py-16 sm:px-16 sm:py-24 lg:flex lg:gap-x-20 lg:px-24 lg:py-32">
+            <div className="mx-auto max-w-2xl text-center lg:mx-0 lg:flex-auto lg:text-left">
+              <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
+                Ready to Change Your Life?
+              </h2>
+              <p className="mt-6 text-lg leading-8 text-gray-100">
+                Join thousands of successful quitters who took the first step towards a healthier life.
+              </p>
+              <div className="mt-10 flex items-center justify-center gap-x-6 lg:justify-start">
+                <Link
+                  to="/signup"
+                  className="rounded-full bg-white px-6 py-3 text-base font-semibold text-primary-600 shadow-sm hover:bg-gray-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white transition-all duration-200"
+                >
+                  Get started today
+                </Link>
+                <Link to="/about" className="text-base font-semibold leading-6 text-white">
+                  Learn more <span aria-hidden="true">→</span>
+                </Link>
+              </div>
+            </div>
+            <div className="relative mt-16 h-80 lg:mt-8">
+              <div className="absolute left-0 top-0 w-[57rem] max-w-none rounded-md bg-white/5 ring-1 ring-white/10">
+                {/* Add some decorative elements or illustration here */}
+              </div>
             </div>
           </div>
         </div>
