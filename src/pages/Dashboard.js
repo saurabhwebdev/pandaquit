@@ -49,69 +49,74 @@ const motivationalQuotes = [
 export default function Dashboard() {
   const [userData, setUserData] = useState(null);
   const [timeSinceQuit, setTimeSinceQuit] = useState(null);
-  const [error, setError] = useState('');
-  const [quote, setQuote] = useState('');
   const [stats, setStats] = useState({
     moneySaved: 0,
     cigarettesAvoided: 0,
   });
+  const [isUpdating, setIsUpdating] = useState(false);
   const navigate = useNavigate();
-  const shareUrl = window.location.origin; // The URL to your app
+  const shareUrl = window.location.origin;
   const [showShareCard, setShowShareCard] = useState(false);
 
-  useEffect(() => {
-    // Set random motivational quote
-    setQuote(motivationalQuotes[Math.floor(Math.random() * motivationalQuotes.length)]);
+  // Function to update all stats
+  const updateAllStats = () => {
+    if (!userData?.quitDate) return;
+    
+    setIsUpdating(true);
+    const timeDiff = calculateTimeDifference(userData.quitDate);
+    setTimeSinceQuit(timeDiff);
+    
+    const moneySaved = calculateMoneySaved(userData, timeDiff);
+    const cigarettesAvoided = calculateCigarettesNotSmoked(userData, timeDiff);
+    
+    setStats({
+      moneySaved,
+      cigarettesAvoided,
+    });
 
+    // Visual feedback of update
+    setTimeout(() => setIsUpdating(false), 500);
+  };
+
+  useEffect(() => {
     const fetchUserData = async () => {
       try {
-        const userId = auth.currentUser?.uid;
-        if (!userId) {
+        if (!auth.currentUser) {
           navigate('/login');
           return;
         }
 
-        const userDoc = await getDoc(doc(db, 'users', userId));
+        const userDoc = await getDoc(doc(db, 'users', auth.currentUser.uid));
         if (userDoc.exists()) {
-          setUserData(userDoc.data());
+          const data = userDoc.data();
+          // Ensure currency exists, default to INR if not set
+          if (!data.currency) {
+            data.currency = 'INR';
+          }
+          setUserData(data);
+          updateAllStats();
         } else {
           navigate('/onboarding');
         }
       } catch (error) {
-        setError('Failed to load your data. Please try again later.');
-        console.error('Dashboard error:', error);
+        console.error('Error fetching user data:', error);
       }
     };
 
     fetchUserData();
   }, [navigate]);
 
+  // Update effect
   useEffect(() => {
     if (!userData?.quitDate) return;
 
-    const updateStats = () => {
-      const newTimeSinceQuit = calculateTimeDifference(userData.quitDate);
-      setTimeSinceQuit(newTimeSinceQuit);
-      
-      setStats({
-        moneySaved: calculateMoneySaved(userData, newTimeSinceQuit),
-        cigarettesAvoided: calculateCigarettesNotSmoked(userData, newTimeSinceQuit),
-      });
-    };
-
     // Initial update
-    updateStats();
+    updateAllStats();
 
-    // Determine update frequency based on quit duration
-    const now = moment();
-    const quitMoment = moment(userData.quitDate);
-    const hoursSinceQuit = moment.duration(now.diff(quitMoment)).asHours();
+    // Set up 5-second interval
+    const intervalId = setInterval(updateAllStats, 5000);
 
-    // Update every second in the first hour, then every minute
-    const updateInterval = hoursSinceQuit < 1 ? 1000 : 60000;
-
-    const interval = setInterval(updateStats, updateInterval);
-    return () => clearInterval(interval);
+    return () => clearInterval(intervalId);
   }, [userData]);
 
   if (!userData || !timeSinceQuit) {
@@ -126,7 +131,8 @@ export default function Dashboard() {
   }
 
   const nextMilestone = getNextMilestone(timeSinceQuit);
-  const currency = currencies.find(c => c.id === userData.currency)?.symbol || userData.currency;
+  // Get currency symbol with fallback to INR
+  const currencySymbol = userData.currency === 'INR' ? '₹' : (currencies.find(c => c.id === userData.currency)?.symbol || '₹');
 
   // Calculate streak and progress
   const totalDays = Math.floor(timeSinceQuit.totalHours / 24);
@@ -138,6 +144,26 @@ export default function Dashboard() {
     day: moment().subtract(6 - i, 'days').format('ddd'),
     cravings: Math.max(10 - i, 2), // Simulated decreasing cravings
   }));
+
+  // Stat Card Component
+  const StatCard = ({ title, value, icon }) => (
+    <motion.div
+      variants={itemVariants}
+      className={`relative bg-white p-6 rounded-xl shadow-lg ${
+        isUpdating ? 'after:absolute after:inset-0 after:bg-primary-50 after:animate-pulse after:opacity-30 after:rounded-xl' : ''
+      }`}
+    >
+      <div className="flex items-center justify-between">
+        <div className="flex-1">
+          <h3 className="text-lg font-medium text-gray-900">{title}</h3>
+          <p className="mt-1 text-2xl font-semibold text-primary-600">{value}</p>
+        </div>
+        <div className="p-3 bg-primary-100 rounded-lg">
+          {icon}
+        </div>
+      </div>
+    </motion.div>
+  );
 
   return (
     <motion.div 
@@ -152,7 +178,7 @@ export default function Dashboard() {
           variants={itemVariants}
           className="text-center mb-8"
         >
-          <p className="text-xl font-medium text-gray-600 italic">{quote}</p>
+          <p className="text-xl font-medium text-gray-600 italic">{motivationalQuotes[Math.floor(Math.random() * motivationalQuotes.length)]}</p>
         </motion.div>
 
         {/* Main Stats Grid */}
@@ -189,7 +215,7 @@ export default function Dashboard() {
           >
             <div className="text-center">
               <div className="text-3xl font-bold text-green-600 mb-2">
-                {currency}{Number(stats.moneySaved).toFixed(2)}
+                {currencySymbol}{stats.moneySaved.toFixed(2)}
               </div>
               <h3 className="text-lg font-semibold text-gray-900">Money Saved</h3>
               <p className="text-sm text-gray-600">
