@@ -8,6 +8,7 @@ import { currencies } from '../utils/currencies';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
+import ShareProgressCard from '../components/ShareProgressCard';
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -55,6 +56,8 @@ export default function Dashboard() {
     cigarettesAvoided: 0,
   });
   const navigate = useNavigate();
+  const shareUrl = window.location.origin; // The URL to your app
+  const [showShareCard, setShowShareCard] = useState(false);
 
   useEffect(() => {
     // Set random motivational quote
@@ -326,6 +329,42 @@ export default function Dashboard() {
           </ul>
         </motion.div>
       </div>
+
+      {/* Share Progress Button */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        className="fixed bottom-6 right-6"
+      >
+        <button
+          onClick={() => setShowShareCard(true)}
+          className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-primary-600 to-secondary-600 text-white rounded-full shadow-lg hover:shadow-xl transition-shadow duration-300"
+        >
+          <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z" />
+          </svg>
+          Share Progress
+        </button>
+      </motion.div>
+
+      {/* Share Modal */}
+      {showShareCard && (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center p-4 z-50"
+          onClick={(e) => {
+            if (e.target === e.currentTarget) setShowShareCard(false);
+          }}
+        >
+          <ShareProgressCard
+            daysSmokeFree={totalDays}
+            cigarettesAvoided={stats.cigarettesAvoided}
+            moneySaved={stats.moneySaved}
+            shareUrl={shareUrl}
+          />
+        </motion.div>
+      )}
     </motion.div>
   );
 }
